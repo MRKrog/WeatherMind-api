@@ -34,7 +34,7 @@ const retrieveWeather = async (latitude, longitude) => {
 
 }
 
-const retrieveLocation = async (latitude, longitude) => {
+export const retrieveLocation = async (latitude, longitude) => {
   try {
     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleApi}`)
     if(!response.ok) { throw Error('Bad Request')}
@@ -46,7 +46,7 @@ const retrieveLocation = async (latitude, longitude) => {
   }
 }
 
-const cleanAddress = (data) => {
+export const cleanAddress = (data) => {
   let streetNumber = data.results[0].address_components[0].long_name;
   if(!streetNumber) return response.status(422).json('streetNumber is missing')
   let route = data.results[0].address_components[1].long_name;
